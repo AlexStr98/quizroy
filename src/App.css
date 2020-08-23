@@ -1,38 +1,100 @@
-.App {
-  text-align: center;
+@font-face{
+  font-family: Circular Book;
+  src:url('./resources/Circular\ Std\ Book.ttf');
+}
+@font-face{
+  font-family:Circular Bold;
+  src:url('./resources/Circular\ Std\ Bold.ttf');
 }
 
-.App-logo {
-  height: 40vmin;
+body{
+  background-color:#252C4A!important;
+}
+
+.contentContainer{
+  min-height:70vh;
+}
+.answer{
+  width:97%;
+  background-color:transparent;
+  color:white;
+  padding:15px;
+  margin:10px;
+  font-size:20px;
+  border-radius: 45px 45px 45px 45px;
+  -moz-border-radius: 45px 45px 45px 45px;
+  -webkit-border-radius: 45px 45px 45px 45px;
+  border: 5px solid #22476A;
+  transition: ease-in-out 0.25s;
+}
+.zoom:hover{
+  transform: scale(1.05); 
+}
+
+#quizDiv{
+  font-family:Circular Book;
+  color:white;
+  width: 100%;
+}
+#questionContainer{
+  width:100%;
+  font-size:25px;
+  margin:10px;
+}
+#questionCounterDiv{
+  margin-left:10px;
+  color:#8B92BB;
+}
+#totalAmountQuestions{
+  font-size:22px;
+}
+
+.progress-bar{
+  background: rgb(252,80,104);
+  background: linear-gradient(90deg, rgba(252,80,104,1) 0%, rgba(180,112,251,1) 100%);
+}
+
+#countdownBar{
+  background:transparent;
+  border-radius: 45px 45px 45px 45px;
+  -moz-border-radius: 45px 45px 45px 45px;
+  -webkit-border-radius: 45px 45px 45px 45px;
+  border: 5px solid #22476A;
+  height:30px;
+}
+
+.answerCheckbox{
+  float:right;
+  width: 1.3em;
+  height: 1.3em;
+  background-color: transparent;
+  border-radius: 50%;
+  vertical-align: middle;
+  border: 3px solid #22476A;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+  z-index:1;
   pointer-events: none;
 }
+.answerCheckbox:checked{
+  background-color:rgba(180,112,251,1);
+}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.headerName{
+    text-align:left;
+    margin-top:50px;
+    color:white;
+    font-family:Circular Bold;
+    
+}
+
+.blink_me {
+    animation: blinker 1s linear infinite;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
   }
-  to {
-    transform: rotate(360deg);
-  }
-}
