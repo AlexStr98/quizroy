@@ -13,6 +13,7 @@ const bodyParser = require('body-parser');
 var sharedsession = require("express-socket.io-session");
 
 app.use(express.static(path.join(__dirname, 'build')));
+app.get('*', (req, res) => res.sendFile(path.resolve('build', 'index.html')));
 //app.use(express.urlencoded({extended:false}));
 
 
