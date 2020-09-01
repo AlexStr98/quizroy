@@ -7,10 +7,14 @@ import {
   Col,
   ProgressBar,
 } from "react-bootstrap";
+import socket from "./socketConfig";
+import {Redirect} from "react-router-dom";
+
 
 const Entities = require("html-entities").XmlEntities;
 const entities = new Entities();
 const axios = require("axios");
+axios.defaults.withCredentials = true;
 const serverURL = "http://localhost:3004"; //hier localhost 192.168.178.20
 
 export default class StartPage extends React.Component {
@@ -24,6 +28,8 @@ export default class StartPage extends React.Component {
       this.checkAnswer = this.checkAnswer.bind(this);
       this.countdownBar = this.countdownBar.bind(this);
       this.renderQuestionCounter = this.renderQuestionCounter.bind(this);
+      this.renderRedirect = this.renderRedirect.bind(this);
+      this.logout = this.logout.bind(this);
 
       this.state = {
         questionResults: "",
@@ -34,9 +40,25 @@ export default class StartPage extends React.Component {
         siteState: "",
         currentProgress: "100",
         time: "15",
-        score:0
+        score:0,
+        currUser:'',
+        redirect:false
       };
     }
+
+
+  
+
+    componentDidMount(){
+      socket.emit("getCurrUser");
+      socket.on("sessionData",(data)=>this.setState({currUser:data.username}));
+      socket.on("redirect",(data)=>this.setState({redirect:true}));
+      socket.on("forceReload",()=>{
+        window.location.reload();
+      });
+      
+    }
+    
 
     countdownBar() {
       let sleepTime = (this.state.time / this.state.currentProgress) * 1000;
@@ -80,6 +102,19 @@ export default class StartPage extends React.Component {
           }
         }, sleepTime * (i + 1));
       }
+    }
+
+    logout(){
+      var self = this;
+      fetch('/logout',{
+        method:"GET"
+      })
+      .then(function(response){
+        console.log("logout");
+        window.location.reload();
+      })
+      
+      
     }
 
     getCurrentQuestion(){
@@ -305,19 +340,33 @@ export default class StartPage extends React.Component {
     
   }
 
+  renderRedirect(){
+    if(this.state.redirect===true){
+        return(
+            <Redirect to="/signin" />
+        );
+    }
+}
+
   render() {
     return (
       <div>
+        {this.renderRedirect()}
         <Container>
           <Row>
             <Col>
-              <h1 className="headerName">QuizRoy</h1>
+              <h1 className="headerName">QuizRoy welcome {this.state.currUser}</h1>
             </Col>
           </Row>
           <Row>
               <Col>
                 <Button variant="primary" onClick={this.getCurrentQuestion}>
                   Start
+                </Button>
+              </Col>
+              <Col>
+                <Button variant="primary" onClick={this.logout}>
+                  Logout
                 </Button>
               </Col>
             </Row>

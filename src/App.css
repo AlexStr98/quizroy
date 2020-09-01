@@ -98,3 +98,78 @@ body{
       opacity: 0;
     }
   }
+
+
+  #registerButton{
+    width:100%;
+    background:linear-gradient(90deg, rgba(252,80,104,1) 0%, rgba(180,112,251,1) 100%);;
+    color:white;
+    padding:15px;
+    margin-top:10px;
+    font-size:20px;
+    border-radius: 45px 45px 45px 45px;
+    -moz-border-radius: 45px 45px 45px 45px;
+    -webkit-border-radius: 45px 45px 45px 45px;
+    transition: ease-in-out 0.25s;
+    border:none;
+    
+  }
+
+  .registerPageContainer{
+    background-color:#495691;
+    border-radius:25px;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.3);
+   
+    
+  }
+
+  #outerDiv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+
+
+
+  
+  #registerDiv{
+    min-height:60vh;
+    padding:50px;
+    display:flex;
+    align-items: center;
+  }
+
+  #innerRegisterDiv > h1{
+    color:white;
+    margin-bottom:2rem!important;
+  }
+
+  #innerRegisterDiv{
+    width:100%;
+  }
+
+  .form-group{
+    margin-bottom:2rem!important;
+  }
+
+  #loginLink{
+
+    color:white;
+  }
+  #linkDiv{
+    margin-top:25px;
+    text-align:end;
+  }
+
+  #logoDiv{
+    display:flex;
+    align-items: center;
+    height:100%;
+  }
+
+ .loader{
+   float:left;
+   display:none;
+ }
+ 
