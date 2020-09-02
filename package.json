@@ -27,7 +27,6 @@
     "react-loader-spinner": "^3.1.14",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
-    "react-static-plugin-react-router": "^7.4.2",
     "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.0",
     "uuid": "^8.3.0"
