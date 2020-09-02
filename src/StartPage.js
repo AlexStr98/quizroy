@@ -107,7 +107,10 @@ export default class StartPage extends React.Component {
     logout(){
       var self = this;
       fetch('/logout',{
-        method:"GET"
+        method:"GET",
+        header:{
+          "Content-Type":"application/json"
+        }
       })
       .then(function(response){
         console.log("logout");
@@ -119,7 +122,12 @@ export default class StartPage extends React.Component {
 
     getCurrentQuestion(){
         var self = this;
-        fetch('/fetchQuestions')
+        fetch('/fetchQuestions',{
+          method:"GET",
+          header:{
+            "Content-Type":"application/json"
+          }
+        })
         .then(response => response.json())
         .then(data => {
             self.setState({questionResults:data.results});
